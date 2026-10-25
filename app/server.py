@@ -4,7 +4,7 @@ APP_VERSION = os.getenv("APP_VERSION", "1.0")
 def get_version():
    return APP_VERSION
 def get_status():
-   return 200
+   return 503
 class PulseHandler(BaseHTTPRequestHandler):
    def do_GET(self):
        if self.path == "/health":
