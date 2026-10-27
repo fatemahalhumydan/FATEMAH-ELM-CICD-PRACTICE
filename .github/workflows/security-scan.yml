@@ -12,7 +12,7 @@ jobs:
        uses: aquasecurity/trivy-action@master
        with:
          scan-type: image
-         image-ref: ghcr.io/${{ github.repository }}:latest
+         image-ref: 'ghcr.io/fatemahalhumydan/fatemah-elm-cicd-practice:latest'
          format: table
          severity: HIGH,CRITICAL
          exit-code: '0'
