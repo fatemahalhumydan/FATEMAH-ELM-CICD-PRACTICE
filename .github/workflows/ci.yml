@@ -75,7 +75,6 @@ jobs:
           tags: |
             ghcr.io/fatemahalhumydan/fatemah-elm-cicd-practice:latest
             ghcr.io/fatemahalhumydan/fatemah-elm-cicd-practice:${{ github.sha }}
-            GitHub Actions · CI/CD and automations · Agentic Workflows · Workflows
-            Easily build, package, release, update, and deploy your project in any language—on GitHub or any external system—without having to run code yourself.
+ 
  
     
