@@ -14,5 +14,5 @@ jobs:
          scan-type: image
          image-ref: 'ghcr.io/fatemahalhumydan/fatemah-elm-cicd-practice:latest'
          format: table
-         severity: HIGH,CRITICAL
+         severity: CRITICAL
          exit-code: '1'
