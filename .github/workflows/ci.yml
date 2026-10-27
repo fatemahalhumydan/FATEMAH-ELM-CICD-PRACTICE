@@ -1,41 +1,81 @@
 name: Pulse CI Tests
+
 on:
- push:
-   branches: [main]
- pull_request:
-   branches: [main]
- workflow_dispatch:
+
+  push:
+
+    branches: [main]
+
+  pull_request:
+
+    branches: [main]
+
+  workflow_dispatch:
+
 permissions:
- contents: read
- packages: write
+
+  contents: read
+
+  packages: write
+
 jobs:
- test:
-   runs-on: ubuntu-24.04
-   steps:
-     - uses: actions/checkout@v6
-     - uses: actions/setup-python@v6
-       with:
-         python-version: '3.12'
-     - name: Run tests
-       run: python -m unittest discover -s tests -v
-     publish:
-   needs: test
-   if: github.event_name != 'pull_request'
-   runs-on: ubuntu-24.04
-   steps:
-     - uses: actions/checkout@v6
-     - name: Log in to GHCR
-       uses: docker/login-action@v3
-       with:
-         registry: ghcr.io
-         username: ${{ github.actor }}
-         password: ${{ secrets.GITHUB_TOKEN }}
-     - name: Build and Publish Docker Image
-       uses: docker/build-push-action@v7
-       with:
-         context: .
-         push: true
-         tags: |
+
+  test:
+
+    runs-on: ubuntu-24.04
+
+    steps:
+
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+
+        with:
+
+          python-version: '3.12'
+
+      - name: Run tests
+
+        run: python -m unittest discover -s tests -v
+
+  publish:
+
+    needs: test
+
+    if: github.event_name != 'pull_request'
+
+    runs-on: ubuntu-24.04
+
+    steps:
+
+      - uses: actions/checkout@v4
+
+      - name: Log in to GHCR
+
+        uses: docker/login-action@v3
+
+        with:
+
+          registry: ghcr.io
+
+          username: ${{ github.actor }}
+
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build and Publish Docker Image
+
+        uses: docker/build-push-action@v6
+
+        with:
+
+          context: .
+
+          push: true
+
+          tags: |
             ghcr.io/fatemahalhumydan/fatemah-elm-cicd-practice:latest
             ghcr.io/fatemahalhumydan/fatemah-elm-cicd-practice:${{ github.sha }}
+            GitHub Actions · CI/CD and automations · Agentic Workflows · Workflows
+            Easily build, package, release, update, and deploy your project in any language—on GitHub or any external system—without having to run code yourself.
+ 
     
